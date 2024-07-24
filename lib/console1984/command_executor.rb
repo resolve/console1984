@@ -6,6 +6,8 @@
 #   if needed.
 # * It will log the command execution, and flag suspicious attempts and forbidden commands
 #   appropriately.
+require 'pry'
+
 class Console1984::CommandExecutor
   include Console1984::Freezeable
 
