@@ -14,6 +14,7 @@ class Console1984::Config
     protections_config
     base_record_class
     debug test_mode
+    ask_for_user_if_empty
   ]
 
   attr_accessor(*PROPERTIES)
@@ -61,5 +62,6 @@ class Console1984::Config
 
       self.debug = false
       self.test_mode = false
+      self.ask_for_user_if_empty = false
     end
 end

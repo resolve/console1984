@@ -36,7 +36,18 @@ class Console1984::Supervisor
   end
 
   def current_username
-    @current_username ||= username_resolver.current.presence || handle_empty_username
+    if Console1984.config.ask_for_user_if_empty
+      unless @current_username.present?
+        email = ask_for_value "Please, enter your email"
+        user = ::User.find_by(email: email)
+        return raise Console1984::Errors::MissingUsername unless user.present?
+        password = ask_for_value "Password: "
+        return raise Console1984::Errors::MissingUsername unless user.valid_password? password
+      end
+      @current_username ||= user.email
+    else
+      @current_username ||= username_resolver.current.presence || handle_empty_username
+    end
   end
 
   private

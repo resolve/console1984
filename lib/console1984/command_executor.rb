@@ -116,3 +116,13 @@ class Console1984::CommandExecutor
       error
     end
 end
+
+Pry.prepend(Module.new do
+  include Console1984::Freezeable
+
+  def process_command(line, ...)
+    Console1984.command_executor.execute(Array(line)) do
+      super
+    end
+  end
+end)
