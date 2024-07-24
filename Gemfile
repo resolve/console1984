@@ -7,3 +7,4 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem 'activeresource', git: 'https://github.com/basecamp/activeresource.git'
+gem 'pry-rails'
